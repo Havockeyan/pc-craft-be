@@ -5,7 +5,7 @@ const User = require('../models/User');
 const { validateSignup, validateLogin } = require('../middleware/authMiddleware');
 
 // Signup API
-router.post('/signup', validateSignup, async (req, res) => {
+router.post('/users/signup', validateSignup, async (req, res) => {
     const { username, email, password, phone } = req.body;
 
     try {
@@ -23,7 +23,7 @@ router.post('/signup', validateSignup, async (req, res) => {
 });
 
 // Login API
-router.post('/login', validateLogin, async (req, res) => {
+router.post('/users/login', validateLogin, async (req, res) => {
     const { email, password } = req.body;
 
     try {
