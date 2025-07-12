@@ -98,3 +98,77 @@ Logs in a user with valid credentials.
     "error": "Internal server error"
   }
   ```
+
+---
+
+## Contact Us (Ticket Creation)
+
+**Endpoint:**
+```
+POST /contact-us
+```
+
+**Description:**
+Submits a contact request, stores it as a ticket in the database (with status 'open'), and sends an email to all admin emails.
+
+**Request Body:**
+```json
+{
+  "name": "string",
+  "email": "string",
+  "message": "string"
+}
+```
+
+**Response:**
+- **200 OK**
+  ```json
+  {
+    "success": true,
+    "message": "Message sent successfully.",
+    "sentTo": [
+      { "email": "admin1@example.com" },
+      { "email": "admin2@example.com" }
+    ],
+    "ticket": {
+      "_id": "string",
+      "name": "string",
+      "email": "string",
+      "message": "string",
+      "status": "open",
+      "createdAt": "2025-07-12T03:27:14.100Z",
+      "updatedAt": "2025-07-12T03:27:14.100Z"
+    }
+  }
+  ```
+- **400 Bad Request**
+  ```json
+  {
+    "error": "Name, email, and message are required."
+  }
+  ```
+- **500 Internal Server Error**
+  ```json
+  {
+    "error": "Failed to save ticket."
+  }
+  ```
+  or
+  ```json
+  {
+    "error": "Failed to fetch admin emails."
+  }
+  ```
+  or
+  ```json
+  {
+    "error": "Failed to send message."
+  }
+  ```
+
+**Notes:**
+- All errors are logged to `logs/error.log`.
+- Tickets are created with status `open` by default.
+- Admin emails are fetched from the database.
+
+---
