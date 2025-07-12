@@ -1,0 +1,11 @@
+[2025-07-12T03:27:14.100Z] Failed to save ticket: TypeError: Ticket is not a constructor
+    at /home/karthi-17739/Documents/pc-craft-be/routes/contactUsRoutes.js:62:14
+    at Layer.handleRequest (/home/karthi-17739/Documents/pc-craft-be/node_modules/router/lib/layer.js:152:17)
+    at next (/home/karthi-17739/Documents/pc-craft-be/node_modules/router/lib/route.js:157:13)
+    at Route.dispatch (/home/karthi-17739/Documents/pc-craft-be/node_modules/router/lib/route.js:117:3)
+    at handle (/home/karthi-17739/Documents/pc-craft-be/node_modules/router/index.js:435:11)
+    at Layer.handleRequest (/home/karthi-17739/Documents/pc-craft-be/node_modules/router/lib/layer.js:152:17)
+    at /home/karthi-17739/Documents/pc-craft-be/node_modules/router/index.js:295:15
+    at processParams (/home/karthi-17739/Documents/pc-craft-be/node_modules/router/index.js:582:12)
+    at next (/home/karthi-17739/Documents/pc-craft-be/node_modules/router/index.js:291:5)
+    at Function.handle (/home/karthi-17739/Documents/pc-craft-be/node_modules/router/index.js:186:3)
