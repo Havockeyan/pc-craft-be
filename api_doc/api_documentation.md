@@ -32,7 +32,10 @@ Registers a new user.
 - **201 Created**
   ```json
   {
-    "message": "User registered successfully"
+    "message": "User registered successfully",
+    "user": { "username": "string", "email": "string" },
+    "accessToken": "jwt-access-token",
+    "refreshToken": "jwt-refresh-token"
   }
   ```
 - **400 Bad Request**
@@ -77,7 +80,10 @@ Logs in a user with valid credentials.
 - **200 OK**
   ```json
   {
-    "message": "Login successful"
+    "message": "Login successful",
+    "user": { "username": "string", "email": "string" },
+    "accessToken": "jwt-access-token",
+    "refreshToken": "jwt-refresh-token"
   }
   ```
 - **400 Bad Request**
@@ -96,6 +102,51 @@ Logs in a user with valid credentials.
   ```json
   {
     "error": "Internal server error"
+  }
+  ```
+
+---
+
+### 3. Refresh Token
+**Endpoint:**
+```
+POST /refresh
+```
+
+**Description:**
+Exchanges a valid refresh token for a new access token and refresh token.
+
+**Request Body:**
+```json
+{
+  "refreshToken": "jwt-refresh-token"
+}
+```
+
+**Response:**
+- **200 OK**
+  ```json
+  {
+    "accessToken": "new-jwt-access-token",
+    "refreshToken": "new-jwt-refresh-token"
+  }
+  ```
+- **400 Bad Request**
+  ```json
+  {
+    "error": "Refresh token required"
+  }
+  ```
+- **401 Unauthorized**
+  ```json
+  {
+    "error": "Refresh token expired"
+  }
+  ```
+- **401 Unauthorized**
+  ```json
+  {
+    "error": "Invalid refresh token"
   }
   ```
 
