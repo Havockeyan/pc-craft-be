@@ -1,6 +1,7 @@
 // index.js
 const express = require('express');
 const mongoose = require('mongoose');
+const cors = require('cors');
 const app = express();
 const PORT = process.env.PORT || 3001;
 
@@ -9,6 +10,7 @@ require('dotenv').config();
 
 // Middleware to parse JSON
 app.use(express.json());
+app.use(cors());
 
 // Connect to MongoDB
 mongoose.connect(process.env.MONGO_URI, {
@@ -22,15 +24,8 @@ mongoose.connect(process.env.MONGO_URI, {
     process.exit(1);
 });
 
-// User schema and model
-const userSchema = new mongoose.Schema({
-    username: { type: String, required: true },
-    email: { type: String, required: true, unique: true },
-    password: { type: String, required: true },
-    phone: { type: String, required: true }
-});
 
-const User = mongoose.model('User', userSchema);
+const User = require('./models/User');
 
 // Sample route
 app.get('/', (req, res) => {
@@ -267,6 +262,15 @@ app.get('/test', (req, res) => {
  *         email:
  *           type: string
  */
+
+// Error logging middleware
+const logError = require('./middleware/logError');
+
+// Centralized error handler
+app.use((err, req, res, next) => {
+    logError(err.stack || err);
+    res.status(500).json({ error: 'Internal server error' });
+});
 
 // Start server
 app.listen(PORT, () => {

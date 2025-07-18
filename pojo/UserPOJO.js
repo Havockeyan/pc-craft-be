@@ -1,10 +1,8 @@
 class UserPOJO {
-  constructor({ username, email, phone }) {
+  constructor({ username, email }) {
     this.username = username;
     this.email = email;
-    this.phone = phone;
   }
 }
 
 module.exports = UserPOJO;
-
