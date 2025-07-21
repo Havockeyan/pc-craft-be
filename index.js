@@ -44,6 +44,14 @@ app.use(contactUsRoutes);
 const adminEmailRoutes = require('./routes/adminEmailRoutes');
 app.use(adminEmailRoutes);
 
+// Product routes
+const productRoutes = require('./routes/productRoutes');
+app.use('/api', productRoutes);
+
+// Category routes
+const categoryRoutes = require('./routes/categoryRoutes');
+app.use('/api', categoryRoutes);
+
 // Swagger UI and Swagger JSDoc setup
 const swaggerUi = require('swagger-ui-express');
 const swaggerJSDoc = require('swagger-jsdoc');
